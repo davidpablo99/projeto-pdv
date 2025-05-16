@@ -9,14 +9,13 @@ import { IoIosSettings } from "react-icons/io";
 import "./Sidebar.css"
 import { FaUserAlt } from "react-icons/fa";
 
+
 export default function Sidebar() {
-  const handleLogout = ()=>{
-    alert("Deseja sair?")
-  }
+  const handleLogout = ()=>{}
   const variantBadge = "outline"
   
   return (
-      <Flex direction={"column"} m={"2"} className="sidebar">
+      <Flex direction={"column"} m={"2"} className="sidebar" height={"100vw"}>
         <Text className="text-logo">Simple PDV</Text>
         <br />
           <nav style={{textAlign: "left"}}>
@@ -79,7 +78,7 @@ export default function Sidebar() {
         <br />
         <hr />
         <br />
-        <Button mx={"2"} onClick={handleLogout}>Logout</Button>
+        <Button onClick={handleLogout}>Logout</Button>
       </Flex>
   )
 }

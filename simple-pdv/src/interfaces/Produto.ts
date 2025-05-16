@@ -6,5 +6,5 @@ export interface Produto {
     descricao?: string;
     estoque: number;
     categoria?: string;
-    status: string; 
+    status: string;
 }

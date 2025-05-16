@@ -1,4 +1,6 @@
-import { Box, Flex, Select, Tabs, Text, TextField } from "@radix-ui/themes";
+import { Box, Tabs } from "@radix-ui/themes";
+import CadastroProdutos from "./CadastroProdutos";
+import ListaProdutos from "./ListaProdutos";
 
 export default function Produtos() {
   
@@ -10,40 +12,12 @@ export default function Produtos() {
         <Tabs.Trigger value="listar-produtos">Listar/Editar Produtos</Tabs.Trigger>
       </Tabs.List>
 
-      <Box>
+      <Box my={"4"} width = "80vw">
         <Tabs.Content value="cadastro-produto">
-          <br />
-          <Flex gap={"3"}>
-            <Box>
-              <Text as="label">Nome do produto:</Text>
-              <TextField.Root/>
-            </Box>
-            <Box>
-              <Text as="label">Preço:</Text>
-              <TextField.Root/>
-            </Box>
-            <Box>
-              <Text as="label">Descrição:</Text>
-              <TextField.Root/>
-            </Box>
-            <Box>
-              <Text as="label">Quantidade:</Text>
-              <TextField.Root/>
-            </Box>
-          </Flex>
-          <Flex my={"4"}>
-            <Box>
-              <Select.Root defaultValue="em-estoque">
-                <Select.Trigger/>
-                  <Select.Content>
-                    <Select.Group>
-                      <Select.Item value="em-estoque">Em estoque</Select.Item>
-                      <Select.Item value="esgotado">Esgotado</Select.Item>
-                    </Select.Group>
-                  </Select.Content>
-              </Select.Root>
-            </Box>
-          </Flex>
+          <CadastroProdutos/>
+        </Tabs.Content >
+        <Tabs.Content value="listar-produtos">
+          <ListaProdutos/>
         </Tabs.Content>
       </Box>
     </Tabs.Root>
