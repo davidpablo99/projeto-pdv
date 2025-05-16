@@ -1,4 +1,5 @@
 import { Box, Tabs } from "@radix-ui/themes";
+import Manutencao from "../Manutencao";
 
 export default function Relatorios() {
   return (
@@ -11,7 +12,7 @@ export default function Relatorios() {
 
       <Box>
         <Tabs.Content value="relatorio-periodo">
-          
+          <Manutencao/>
         </Tabs.Content>
       </Box>
     </Tabs.Root>

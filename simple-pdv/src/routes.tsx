@@ -7,6 +7,7 @@ import Relatorios from "./pages/Relatorios/Relatorios";
 import Configuracoes from "./pages/Configuracoes/Configuracoes";
 import Financeiro from "./pages/Financeiro/Financeiro";
 import Clientes from "./pages/Clientes/Clientes";
+import Conta from "./pages/Conta/Conta";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: "clientes",
                 element: <Clientes/>
+            },
+            {
+                path: "conta",
+                element: <Conta/>
             }
             
             

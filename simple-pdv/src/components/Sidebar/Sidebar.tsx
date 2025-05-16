@@ -7,6 +7,7 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { IoIosSettings } from "react-icons/io";
 import "./Sidebar.css"
+import { FaUserAlt } from "react-icons/fa";
 
 export default function Sidebar() {
   const handleLogout = ()=>{
@@ -58,6 +59,13 @@ export default function Sidebar() {
               <Badge variant={variantBadge} radius="none" size={"3"} className="sidebar-badge">
                 <TbReportAnalytics />
                 Relatórios
+              </Badge>
+            </NavLink>
+            <br />
+            <NavLink to={"/conta"}>
+              <Badge variant={variantBadge} radius="none" size={"3"} className="sidebar-badge">
+                <FaUserAlt />
+                Conta
               </Badge>
             </NavLink>
             <br />

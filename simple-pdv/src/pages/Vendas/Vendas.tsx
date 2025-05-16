@@ -1,4 +1,4 @@
-import { Box, Tabs } from "@radix-ui/themes";
+import { Box, Tabs, Text } from "@radix-ui/themes";
 import Manutencao from "../Manutencao";
 
 export default function Vendas() {
@@ -10,7 +10,12 @@ export default function Vendas() {
       </Tabs.List>
 
       <Box>
-        <Tabs.Content value="cadastro-clientes">
+        <Tabs.Content value="nova-venda">
+          <Text>Nova venda</Text>
+          <Manutencao/>
+        </Tabs.Content>
+        <Tabs.Content value="historico-vendas">
+          <Text>Histórico de vendas</Text>
           <Manutencao/>
         </Tabs.Content>
       </Box>
