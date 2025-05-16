@@ -9,7 +9,7 @@ export default function Clientes() {
         <Tabs.Trigger value="cadastro-clientes">Cadastro de Clientes</Tabs.Trigger>
         <Tabs.Trigger value="lista-clientes">Listar Clientes</Tabs.Trigger>
       </Tabs.List>
-
+    
       <Box>
         <Tabs.Content value="cadastro-clientes">
           <CadastroClientes/>

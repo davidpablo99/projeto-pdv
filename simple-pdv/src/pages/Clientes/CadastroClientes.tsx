@@ -20,7 +20,7 @@ export default function CadastroClientes(){
             <Flex my={"3"}>
                 <Box>
                     <Text as="label">Avatar:</Text><br />
-                    <Avatar size={"7"} src="" fallback></Avatar><br />
+                    <Avatar my={"4"} size={"7"} src="" fallback></Avatar><br />
                     <input type="file" defaultValue={""}/>
                 </Box>
             </Flex>

@@ -11,7 +11,9 @@ import { FaUserAlt } from "react-icons/fa";
 
 
 export default function Sidebar() {
-  const handleLogout = ()=>{}
+  const handleLogout = ()=>{
+    alert("Tem certeza que deseja deslogar?")
+  }
   const variantBadge = "outline"
   
   return (

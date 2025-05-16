@@ -1,6 +1,9 @@
-import { Box, Flex, Select, Text, TextField } from "@radix-ui/themes";
+import { Box, Button, Flex, Select, Text, TextField } from "@radix-ui/themes";
 
 export default function CadastroProdutos(){
+  function cadastrarProduto(){
+    alert("Produto cadastrado!")
+  }
     return (
         <>
         <Flex as="div" width = "80vw">
@@ -44,6 +47,10 @@ export default function CadastroProdutos(){
               <Text as="label">Imagem do Produto:</Text><br />
               <input type="file"/>
             </Box>
+          </Flex>
+          <br />
+          <Flex>
+            <Button onClick={cadastrarProduto}>Cadastrar Produto</Button>
           </Flex>
         </>
     )
