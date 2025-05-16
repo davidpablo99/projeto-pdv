@@ -1,0 +1,22 @@
+.sidebar-badge {
+  width: 100%;
+  gap: 8px;
+  text-align: left;
+  margin-bottom: 8px;
+  text-decoration: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: rgba(0, 0, 0, 0.63);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.sidebar-badge:hover{
+    background-color: #ffffff;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+.text-logo{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+}
