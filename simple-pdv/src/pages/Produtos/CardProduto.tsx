@@ -10,11 +10,15 @@ export function CardProduto({produto}: CardProdutoPros){
     // Itens para testes abaixo
     // const produto: Produto = {id:1, nome: "Feijoada Pequena", imagem:"https://i.panelinha.com.br/i1/bk-9097-39-panelinha-12-02-200635.webp",preco: 35, descricao: "Teste", estoque: 12, status: "Em estoque"}
     // const produto2: Produto = {id:1, nome: "Feijoada Pequena", imagem:"https://i.panelinha.com.br/i1/bk-9097-39-panelinha-12-02-200635.webp",preco: 35, descricao: "Teste", estoque: 12, status: "Em estoque"}
+    function handleSubmit(){
+        alert("Produto adicionado!")
+    }
+    
     return(
-            <Box maxWidth={"35rem"} m={"3"}>
-                <Card size={"4"} style={{backgroundColor: "#64d08f"}}>
+            <Box maxWidth={"17rem"} m={"3"}>
+                <Card size={"1"} style={{backgroundColor: "#64d08f"}} onClick={handleSubmit}>
                     <Flex gap={"3"}>
-                        <Avatar size={"6"} src={produto.imagem} radius="small" fallback="?"/>
+                        <Avatar size={"5"} src={produto.imagem} radius="small" fallback="?"/>
                         <Box>
                             <Text as="div" size={"2"} weight={"bold"}>{produto.nome}</Text>
                             <Text as="p" size={"1"} color="gray">{produto.descricao}</Text>

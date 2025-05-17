@@ -3,7 +3,7 @@ import { Flex, Table, TextArea, TextField } from "@radix-ui/themes";
 
 export default function ListaClientes(){
     return(
-        <Flex direction={"column"} style={{backgroundColor: "#e1dfdf"}}>
+        <Flex direction={"column"} className="layout-container-direito">
             <Flex my={"4"}>
                 <TextField.Root placeholder="Pesquisar Cliente…" size={"3"} style={{width:"100%"}}>
                     <TextField.Slot>
@@ -12,7 +12,7 @@ export default function ListaClientes(){
                 </TextField.Root>
             </Flex>
             <Flex my={"4"}>
-                <Table.Root variant="surface" style={{width:"80vw"}}>
+                <Table.Root variant="surface" style={{width:"80vw",height: "35vw"}}>
                     <Table.Header>
                         <Table.Row>
                             <Table.RowHeaderCell>Nome</Table.RowHeaderCell>

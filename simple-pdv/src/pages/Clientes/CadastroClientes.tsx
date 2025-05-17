@@ -16,7 +16,7 @@ import { Avatar, Box, Flex, Text, TextArea, TextField } from "@radix-ui/themes";
 
 export default function CadastroClientes(){
     return (
-        <Box>
+        <Box className="layout-container-direito" >
             <Flex my={"3"}>
                 <Box>
                     <Text as="label">Avatar:</Text><br />

@@ -5,3 +5,12 @@
 .container-sidebar{
     background-color: rgb(100, 215, 136);
 }
+
+.layout-container-direito{
+    height: 45vw;
+    width: 85vw;
+    background-color: #e1dfdf;
+    padding: 1vw;
+    margin: 1vw;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
