@@ -3,7 +3,7 @@ import { Box, Button, Checkbox, Flex, RadioGroup, ScrollArea, Text, TextField } 
 import { CardProduto } from "../Produtos/CardProduto";
 import type { Produto } from "../../interfaces/Produto";
 
-const produto: Produto = {id:1, nome: "Feijoada Pequena", imagem:"https://i.panelinha.com.br/i1/bk-9097-39-panelinha-12-02-200635.webp",preco: 35, descricao: "Teste", estoque: 12, status: "Em estoque"}
+const produto: Produto = {id:1, nome: "Feijoada Pequena", imagem:"https://i.panelinha.com.br/i1/bk-9097-39-panelinha-12-02-200635.webp",preco: 35, descricao: "Teste", quantidade: 12, status: "Em estoque"}
 
 function fecharVenda(){
   alert("Fechando venda")
