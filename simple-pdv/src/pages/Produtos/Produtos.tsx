@@ -12,7 +12,7 @@ export default function Produtos() {
         <Tabs.Trigger value="listar-produtos">Listar/Editar Produtos</Tabs.Trigger>
       </Tabs.List>
 
-      <Box my={"4"} width = "80vw">
+      <Box className="layout-container-direito">
         <Tabs.Content value="cadastro-produto">
           <CadastroProdutos/>
         </Tabs.Content >

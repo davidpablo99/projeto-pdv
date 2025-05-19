@@ -13,44 +13,53 @@ export default function NovaVenda(){
     return (
         <Flex direction={"row"} align={"center"} justify={"center"}>
               {/* SECTION DE CARRINHO E VENDA */}
-              <Box className="layout-container-direito" style={{backgroundColor: "#ffffff"}}>
+              <Box className="layout-container-direito" mx={"1vw"} style={{backgroundColor: "#ffffff"}}>
                 
-                <Flex>
-                  <Text>CARRINHO</Text>
+                <Flex direction={"column"} style={{backgroundColor: "#f4f4f4", height: "45%",width: "100%", marginTop: "1vw", marginBottom: "1vw", padding: "1vw", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)"}}>
+                  <Flex style={{marginBottom: "1vw"}}>
+                    <h2>Carrinho</h2>
+                  </Flex>
+                    <ScrollArea>
+                      <CardProduto produto={produto}/>
+                      <CardProduto produto={produto}/>
+                      <CardProduto produto={produto}/>
+                      <CardProduto produto={produto}/>
+                      <CardProduto produto={produto}/>
+                      <CardProduto produto={produto}/>
+                    </ScrollArea>
                 </Flex>
-                <Flex style={{backgroundColor: "#f4f4f4", height: "45%",width: "100%", marginTop: "1vw", marginBottom: "1vw", padding: "1vw", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)"}}>
-                  <ScrollArea>
-                    <CardProduto produto={produto}/>
-                    <CardProduto produto={produto}/>
-                    <CardProduto produto={produto}/>
-                    <CardProduto produto={produto}/>
-                    <CardProduto produto={produto}/>
-                    <CardProduto produto={produto}/>
-                  </ScrollArea>
+                <Flex style={{backgroundColor: "#f4f4f4", height: "35%",width: "100%", marginTop: "2vw", marginBottom: "1vw", padding: "1vw", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)"}} align={"center"}>
+                  <Box>
+                    <h2>Checkout</h2>
+                    <Flex direction={"column"} >
+                      <Text as="label">Método de pagamento:</Text>
+                      <RadioGroup.Root>
+                        <RadioGroup.Item value="1">Dinheiro</RadioGroup.Item>
+                        <RadioGroup.Item value="2">Débito</RadioGroup.Item>
+                        <RadioGroup.Item value="3">Crédito</RadioGroup.Item>
+                        <RadioGroup.Item value="4">Pix</RadioGroup.Item>
+                      </RadioGroup.Root>
+                    </Flex>
+                  </Box>
+                  <Box mx={"4"}>
+
+                    <Flex gap={"4"} align={"center"}>
+                      <Text as="label">Aplicar desconto?</Text>
+                      <Checkbox />
+                    </Flex>
+                    <Flex gap={"4"} align={"center"}>
+                      <Text as="label">Entregar?</Text>
+                      <Checkbox />
+                    </Flex>
+                    <Flex gap={"4"}>
+                      <Text>Total:</Text>
+                    </Flex>
+
+                  </Box>
                 </Flex>
-                <Flex direction={"column"}>
-                  <Text as="label">Método de pagamento:</Text>
-                  <RadioGroup.Root>
-                    <RadioGroup.Item value="1">Dinheiro</RadioGroup.Item>
-                    <RadioGroup.Item value="2">Débito</RadioGroup.Item>
-                    <RadioGroup.Item value="3">Crédito</RadioGroup.Item>
-                    <RadioGroup.Item value="4">Pix</RadioGroup.Item>
-                  </RadioGroup.Root>
-                </Flex>
-                <Flex gap={"4"} align={"center"}>
-                  <Text as="label">Aplicar desconto?</Text>
-                  <Checkbox />
-                </Flex>
-                <Flex gap={"4"} align={"center"}>
-                  <Text as="label">Entregar?</Text>
-                  <Checkbox />
-                </Flex>
-                <Flex>
-                  <Text>Total:</Text>
-                </Flex>
-                <Flex>
-                  <Button onClick={fecharVenda}>Fechar venda</Button>
-                </Flex>
+                    <Flex justify={"center"} gap={"4"} my={"5"}>
+                      <Button onClick={fecharVenda}>Fechar venda</Button>
+                    </Flex>
               </Box>
 
               {/* DAQUI PRA BAIXO É A SECTION DE PRODUTOS */}
@@ -61,7 +70,7 @@ export default function NovaVenda(){
                     </TextField.Slot>
                   </TextField.Root>
                   <br />
-                  <Text style={{fontWeight:"bold"}}>PRODUTOS:</Text>
+                  <Text style={{fontWeight:"bold"}}>Produtos:</Text>
                 <ScrollArea my={"3"} style={{height: "35vw"}}>
                   <CardProduto produto={produto}/>
                   <CardProduto produto={produto}/>

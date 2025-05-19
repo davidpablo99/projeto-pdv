@@ -6,13 +6,13 @@
   text-decoration: none;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  color: rgba(0, 0, 0, 0.63);
+  color: #ffffff;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .sidebar-badge:hover{
-    background-color: #ffffff;
+    background-color: #303a46;
     cursor: pointer;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 .text-logo{
     text-align: center;

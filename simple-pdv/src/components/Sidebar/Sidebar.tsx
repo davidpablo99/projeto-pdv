@@ -17,8 +17,11 @@ export default function Sidebar() {
   const variantBadge = "outline"
   
   return (
-      <Flex direction={"column"} m={"2"} className="sidebar" height={"100vw"}>
+    <>
+      <Flex my={"4"} justify={"center"} style={{margin: "0", padding: "0",backgroundColor: "#102a4f", paddingTop: "1vw", paddingBottom:"1vw"}}>
         <Text className="text-logo">Simple PDV</Text>
+      </Flex>
+      <Flex direction={"column"} m={"2"} className="sidebar" height={"100vw"}>
         <br />
           <nav style={{textAlign: "left"}}>
             <NavLink to={"/dashboard"}>
@@ -82,5 +85,6 @@ export default function Sidebar() {
         <br />
         <Button onClick={handleLogout}>Logout</Button>
       </Flex>
+      </>
   )
 }

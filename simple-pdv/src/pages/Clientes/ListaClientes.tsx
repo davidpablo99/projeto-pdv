@@ -1,10 +1,11 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { Flex, Table, TextArea, TextField } from "@radix-ui/themes";
+import { Box, Flex, Table, TextArea, TextField } from "@radix-ui/themes";
 
 export default function ListaClientes(){
     return(
         <Flex direction={"column"} className="layout-container-direito">
-            <Flex my={"4"}>
+            <Box className="layout-boxs">
+            <Flex>
                 <TextField.Root placeholder="Pesquisar Cliente…" size={"3"} style={{width:"100%"}}>
                     <TextField.Slot>
                         <MagnifyingGlassIcon height="16" width="16" />
@@ -12,7 +13,7 @@ export default function ListaClientes(){
                 </TextField.Root>
             </Flex>
             <Flex my={"4"}>
-                <Table.Root variant="surface" style={{width:"80vw",height: "35vw"}}>
+                <Table.Root variant="surface" style={{width:"80vw",height: "33vw"}}>
                     <Table.Header>
                         <Table.Row>
                             <Table.RowHeaderCell>Nome</Table.RowHeaderCell>
@@ -41,9 +42,64 @@ export default function ListaClientes(){
                                 <TextArea value={""}/>
                             </Table.Cell>
                         </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell>Marcos</Table.RowHeaderCell>
+                            <Table.Cell>Teste Endereço</Table.Cell>
+                            <Table.Cell>Teste idade</Table.Cell>
+                            <Table.Cell>Teste telefone</Table.Cell>
+                            <Table.Cell>
+                                <TextArea value={""}/>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell>Marcos</Table.RowHeaderCell>
+                            <Table.Cell>Teste Endereço</Table.Cell>
+                            <Table.Cell>Teste idade</Table.Cell>
+                            <Table.Cell>Teste telefone</Table.Cell>
+                            <Table.Cell>
+                                <TextArea value={""}/>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell>Marcos</Table.RowHeaderCell>
+                            <Table.Cell>Teste Endereço</Table.Cell>
+                            <Table.Cell>Teste idade</Table.Cell>
+                            <Table.Cell>Teste telefone</Table.Cell>
+                            <Table.Cell>
+                                <TextArea value={""}/>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell>Marcos</Table.RowHeaderCell>
+                            <Table.Cell>Teste Endereço</Table.Cell>
+                            <Table.Cell>Teste idade</Table.Cell>
+                            <Table.Cell>Teste telefone</Table.Cell>
+                            <Table.Cell>
+                                <TextArea value={""}/>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell>Marcos</Table.RowHeaderCell>
+                            <Table.Cell>Teste Endereço</Table.Cell>
+                            <Table.Cell>Teste idade</Table.Cell>
+                            <Table.Cell>Teste telefone</Table.Cell>
+                            <Table.Cell>
+                                <TextArea value={""}/>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell>Marcos</Table.RowHeaderCell>
+                            <Table.Cell>Teste Endereço</Table.Cell>
+                            <Table.Cell>Teste idade</Table.Cell>
+                            <Table.Cell>Teste telefone</Table.Cell>
+                            <Table.Cell>
+                                <TextArea value={""}/>
+                            </Table.Cell>
+                        </Table.Row>
                     </Table.Body>
                 </Table.Root>
             </Flex>
+            </Box>
         </Flex>
     )
 }

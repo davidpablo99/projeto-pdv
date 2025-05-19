@@ -11,7 +11,7 @@ export default function Configuracoes() {
         <Tabs.Trigger value="tema-interface">Tema/Interface</Tabs.Trigger>
       </Tabs.List>
 
-      <Box>
+      <Box className="layout-container-direito">
         <Tabs.Content value="usuario-permissoes">
           <Manutencao/>
         </Tabs.Content>

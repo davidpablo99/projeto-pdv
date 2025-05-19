@@ -8,7 +8,7 @@ export default function Financeiro() {
         <Tabs.Trigger value="resumo-financeiro">Resumo Financeiro</Tabs.Trigger>
       </Tabs.List>
 
-      <Box>
+      <Box className="layout-container-direito">
         <Tabs.Content value="resumo-financeiro">
           <Manutencao/>
         </Tabs.Content>

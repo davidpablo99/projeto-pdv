@@ -10,7 +10,7 @@ export default function Relatorios() {
         <Tabs.Trigger value="relatorio-lucro">Relatório de Lucro</Tabs.Trigger>
       </Tabs.List>
 
-      <Box>
+      <Box className="layout-container-direito">
         <Tabs.Content value="relatorio-periodo">
           <Manutencao/>
         </Tabs.Content>
