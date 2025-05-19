@@ -4,6 +4,7 @@ import { CardProduto } from "../Produtos/CardProduto";
 import type { Produto } from "../../interfaces/Produto";
 import { useEffect, useState } from "react";
 import type { Venda } from "../../interfaces/Venda";
+// import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -16,7 +17,7 @@ export default function NovaVenda(){
     const [endereco, setEndereco] = useState("");
     const [desconto, setDesconto] = useState(0);
     const [descontoAplicado, setDescontoAplicado] = useState(false)
-    const [venda, setVenda] = useState<Venda[]>([])
+    const [venda, setVenda] = useState<Omit<Venda, "id">[]>([])
     const [metodoPagamento, setMetodoPagamento] = useState<string>("dinheiro")
 
     function limparCampos(){
@@ -37,6 +38,7 @@ export default function NovaVenda(){
       }
       //Aqui FICARA A LOGICA PARA O BACKEND
       const novaVenda = {
+        // id: uuidv4(),
         produtos: carrinho,
         total: total,
         desconto: desconto,
@@ -63,6 +65,7 @@ export default function NovaVenda(){
         console.error("Erro ao registrar venda:", err);
         alert("Erro ao finalizar a venda");
       });
+      console.log(`Os dados para o backend ${venda}`)
     }
 
     function adicionarAoCarrinho(produto:Produto){

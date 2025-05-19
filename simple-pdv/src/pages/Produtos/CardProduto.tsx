@@ -19,7 +19,7 @@ export function CardProduto({produto, onAdicionar}: CardProdutoPros){
                         <Avatar size={"5"} src={produto.imagem} radius="small" fallback="?"/>
                         <Box>
                             <Text as="div" size={"2"} weight={"bold"}>{produto.nome}</Text>
-                            <Text as="p" size={"1"} color="gray">{produto.descricao}</Text>
+                            {/* <Text as="p" size={"1"} color="gray">{produto.descricao}</Text> */}
                             <Text as="p" size={"1"} color="gray">{`R$ ${produto.preco}`}</Text>
                             <Text as="p" size={"1"} color="gray">
                                 <Badge color="green">
