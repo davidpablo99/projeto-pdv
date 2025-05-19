@@ -3,15 +3,13 @@ import type { Produto } from "../../interfaces/Produto"
 
 interface CardProdutoPros {
     produto: Produto
+    onAdicionar: ()=> void
 }
 
 
-export function CardProduto({produto}: CardProdutoPros){
-    // Itens para testes abaixo
-    // const produto: Produto = {id:1, nome: "Feijoada Pequena", imagem:"https://i.panelinha.com.br/i1/bk-9097-39-panelinha-12-02-200635.webp",preco: 35, descricao: "Teste", estoque: 12, status: "Em estoque"}
-    // const produto2: Produto = {id:1, nome: "Feijoada Pequena", imagem:"https://i.panelinha.com.br/i1/bk-9097-39-panelinha-12-02-200635.webp",preco: 35, descricao: "Teste", estoque: 12, status: "Em estoque"}
+export function CardProduto({produto, onAdicionar}: CardProdutoPros){
     function handleSubmit(){
-        alert("Produto adicionado!")
+        onAdicionar();
     }
     
     return(

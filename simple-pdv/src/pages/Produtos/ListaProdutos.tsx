@@ -1,4 +1,4 @@
-import { Badge, Flex, Table, Text } from "@radix-ui/themes";
+import { Badge, Button, Flex, Table, Text } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import type { Produto } from "../../interfaces/Produto";
 
@@ -23,6 +23,7 @@ export default function ListaProdutos(){
                         <Table.RowHeaderCell>Preço</Table.RowHeaderCell>
                         <Table.RowHeaderCell>Quantidade em estoque</Table.RowHeaderCell>
                         <Table.RowHeaderCell>Status</Table.RowHeaderCell>
+                        <Table.RowHeaderCell>Opções</Table.RowHeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -43,6 +44,10 @@ export default function ListaProdutos(){
                                 <Badge color={produto.status === "em-estoque" ? "green" : "tomato"}>
                                     {produto.status}
                                 </Badge>
+                            </Table.Cell>
+                            <Table.Cell>
+                                <Button color="cyan" mx={"3"}>Atualizar</Button>
+                                <Button color="tomato">Excluir</Button>
                             </Table.Cell>
                         </Table.Row>
                     ))}
