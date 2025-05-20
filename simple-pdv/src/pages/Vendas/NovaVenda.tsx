@@ -37,14 +37,18 @@ export default function NovaVenda(){
         return
       }
       //Aqui FICARA A LOGICA PARA O BACKEND
+
       const novaVenda = {
         // id: uuidv4(),
-        produtos: carrinho,
+        produtos: carrinho.map((item)=> item.nome),
         total: total,
         desconto: desconto,
         endereco: mostrarEndereco ? endereco : null,
         metodoPagamento: metodoPagamento,
-        data: new Date().toISOString()
+        data: new Date().toLocaleDateString("pt-BR") + " às " + new Date().toLocaleTimeString("pt-BR", {
+          hour: '2-digit',
+          minute: "2-digit"
+        })
       }
       setVenda((prev) => [...prev, novaVenda]);
 

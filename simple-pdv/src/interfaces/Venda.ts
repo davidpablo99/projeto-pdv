@@ -1,8 +1,6 @@
-import type { Produto } from "./Produto"
-
 export type Venda = {
     id: string,
-    produtos: Produto[],
+    produtos: string[],
     total: number,
     desconto: number,
     endereco: string | null,

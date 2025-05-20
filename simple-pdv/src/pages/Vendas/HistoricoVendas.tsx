@@ -28,7 +28,7 @@ export default function HistoricoVendas(){
                   <Text as="label">ID</Text>
                   <TextField.Root></TextField.Root>
                   <Text as="label">Data</Text>
-                  
+                  <TextField.Root type="date"></TextField.Root>
                   <Button>
                     <MagnifyingGlassIcon/>
                     Pesquisar
@@ -41,6 +41,7 @@ export default function HistoricoVendas(){
                     <Table.Header>
                         <Table.Row>
                             <Table.RowHeaderCell>ID</Table.RowHeaderCell>
+                            <Table.RowHeaderCell>Produtos</Table.RowHeaderCell>
                             <Table.RowHeaderCell>Total</Table.RowHeaderCell>
                             <Table.RowHeaderCell>Entrega</Table.RowHeaderCell>
                             <Table.RowHeaderCell>Pagamento</Table.RowHeaderCell>
@@ -54,6 +55,7 @@ export default function HistoricoVendas(){
                         vendas.map(venda=>(
                           <Table.Row key={venda.id}>
                               <Table.RowHeaderCell>{venda.id}</Table.RowHeaderCell>
+                              <Table.Cell maxWidth={"32vh"}>{venda.produtos.join(", ")}</Table.Cell>
                               <Table.Cell>R$ {venda.total}</Table.Cell>
                               <Table.Cell>
                                 <Checkbox mx={"3"} defaultChecked={!!venda.endereco}/>
