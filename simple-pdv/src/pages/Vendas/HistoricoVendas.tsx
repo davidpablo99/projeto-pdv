@@ -27,9 +27,28 @@ export default function HistoricoVendas(){
       }
     }
 
-    // async function editarVenda(){
-
-    // }
+    async function atualizarEntrega(id: number, entregue:boolean){
+      try{
+        const resposta = await fetch(`http://localhost:3001/vendas/${id}`,{
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({entregue}),
+        })
+        if(resposta.ok){
+          setVendas((prev)=>
+            prev.map((venda)=>
+              venda.id===id ? {...venda, entregue} : venda
+            )
+          );
+        } else {
+          alert("Erro ao atualizar entrega");
+        };
+      } catch (erro){
+        console.log("Erro ao atualizar entrega", erro)
+      }
+    }
 
     useEffect(()=>{
       async function carregarVendas(){
@@ -84,7 +103,8 @@ export default function HistoricoVendas(){
                               <Table.Cell maxWidth={"32vh"}>{venda.produtos.join(", ")}</Table.Cell>
                               <Table.Cell>R$ {venda.total}</Table.Cell>
                               <Table.Cell>
-                                <Checkbox mx={"3"} defaultChecked={!!venda.endereco}/>
+                                <Checkbox mx={"3"} checked={venda.entregue} onCheckedChange = {(checked) => atualizarEntrega(venda.id, checked === true)}
+                                />
                                 </Table.Cell>
                               <Table.Cell>{venda.metodoPagamento}</Table.Cell>
                               <Table.Cell>{venda.data}</Table.Cell>

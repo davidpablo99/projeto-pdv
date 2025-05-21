@@ -3,6 +3,7 @@ export type Venda = {
     produtos: string[],
     total: number,
     desconto: number,
+    entregue: boolean,
     endereco: string | null,
     metodoPagamento: string,
     data: string

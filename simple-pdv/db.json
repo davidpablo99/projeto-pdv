@@ -81,22 +81,11 @@
         "Feijoada Pequena"
       ],
       "total": 35,
+      "entregue": false,
       "desconto": 0,
       "endereco": null,
       "metodoPagamento": "dinheiro",
-      "data": "20/05/2025 às 20:44"
-    },
-    {
-      "id": "2",
-      "produtos": [
-        "BCAA 2400 (30 Tabs) - Nova Fórmula",
-        "Feijoada Grande"
-      ],
-      "total": 115,
-      "desconto": 0,
-      "endereco": null,
-      "metodoPagamento": "dinheiro",
-      "data": "20/05/2025 às 20:44"
+      "data": "20/05/2025 às 21:03"
     }
   ],
   "configuracoes": [],

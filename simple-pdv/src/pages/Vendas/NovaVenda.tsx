@@ -51,6 +51,7 @@ export default function NovaVenda(){
         id: novoId,
         produtos: carrinho.map((item)=> item.nome),
         total: total,
+        entregue: false,
         desconto: desconto,
         endereco: mostrarEndereco ? endereco : null,
         metodoPagamento: metodoPagamento,
@@ -170,7 +171,14 @@ export default function NovaVenda(){
                     }
                     <Flex gap={"4"} align={"center"}>
                       <Text as="label">Entregar?</Text>
-                      <Checkbox checked={mostrarEndereco} onCheckedChange={(value) => setMostrarEndereco(!!value)} />
+                      <Checkbox 
+                        checked={mostrarEndereco} 
+                        onCheckedChange={(value) => {
+                          setMostrarEndereco(!!value)
+                          
+                        }}
+
+                      />
                     </Flex>
                     {
                       mostrarEndereco && (
