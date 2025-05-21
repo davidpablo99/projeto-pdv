@@ -4,7 +4,6 @@ import { CardProduto } from "../Produtos/CardProduto";
 import type { Produto } from "../../interfaces/Produto";
 import { useEffect, useState } from "react";
 import type { Venda } from "../../interfaces/Venda";
-// import { v4 as uuidv4 } from 'uuid';
 
 
 

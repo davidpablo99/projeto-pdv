@@ -5,8 +5,8 @@ import type { Venda } from "../../interfaces/Venda";
 
 export default function HistoricoVendas(){
     const [vendas, setVendas] = useState<Venda[]>([])
-    // const [vendaEditada, setVendaEditada] = useState<Venda | null>(null)
-    // const [editando, setEditando] = useState(false);
+    const [idFiltro, setIdFiltro] = useState("")
+    const [dataFiltro, setDataFiltro] = useState("")
 
     async function excluirVenda(id: number){
       const confirmar = window.confirm("Tem certeza que deseja excluir esta venda?");
@@ -50,18 +50,44 @@ export default function HistoricoVendas(){
       }
     }
 
-    useEffect(()=>{
-      async function carregarVendas(){
-        try{
-          const resposta = await fetch("http://localhost:3001/vendas")
-          const dados = await resposta.json();
-          setVendas(dados);
-        } catch (erro){
-          console.log("Erro ao carregar vendas", erro);
-        }
+    async function filtrarVendas(){
+      const resposta = await fetch("http://localhost:3001/vendas");
+      const dados = await resposta.json()
+      
+      if(!idFiltro && !dataFiltro){
+        setVendas(dados);
+        return
       }
-      carregarVendas();
-    }, []);
+
+      let vendasFiltradas = [...dados]
+      
+      if(idFiltro){
+        vendasFiltradas = vendasFiltradas.filter(venda => venda.id === Number(idFiltro))
+      }
+      if(dataFiltro){
+        vendasFiltradas = vendasFiltradas.filter((venda) => {
+          const [dia,mes,anoHora] = venda.data.split("/");
+          const [ano] = anoHora.split(" às ");
+          const dataFormatada = `${ano}-${mes}-${dia}`;
+          return dataFormatada === dataFiltro;
+      })
+      setVendas(vendasFiltradas)
+      console.log(dataFiltro)
+      console.log(vendasFiltradas)
+    }}
+
+  useEffect(()=>{
+    async function carregarVendas(){
+      try{
+        const resposta = await fetch("http://localhost:3001/vendas")
+        const dados = await resposta.json();
+        setVendas(dados);
+      } catch (erro){
+        console.log("Erro ao carregar vendas", erro);
+      }
+    }
+    carregarVendas();
+  }, []);
 
     return(
         <Flex direction={"row"} >
@@ -70,10 +96,18 @@ export default function HistoricoVendas(){
               <Box style={{backgroundColor: "white",padding: "1vw", boxShadow: "5px 5px 8px rgba(0, 0, 0, 0.3)"}}>
                 <Flex direction={"row"} gap={"4"} align={"center"}>
                   <Text as="label">ID</Text>
-                  <TextField.Root></TextField.Root>
+                  <TextField.Root 
+                    value={idFiltro}
+                    onChange={(e)=> setIdFiltro(e.target.value)}
+                    placeholder="Filtrar por ID"
+                  />
                   <Text as="label">Data</Text>
-                  <TextField.Root type="date"></TextField.Root>
-                  <Button>
+                  <TextField.Root 
+                    type="date" 
+                    value={dataFiltro}
+                    onChange={(e)=> setDataFiltro(e.target.value)}
+                  />
+                  <Button onClick={filtrarVendas}>
                     <MagnifyingGlassIcon/>
                     Pesquisar
                   </Button>
