@@ -1,5 +1,5 @@
 export type Venda = {
-    id: string,
+    id: number | string,
     produtos: string[],
     total: number,
     desconto: number,

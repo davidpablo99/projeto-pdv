@@ -5,6 +5,31 @@ import type { Venda } from "../../interfaces/Venda";
 
 export default function HistoricoVendas(){
     const [vendas, setVendas] = useState<Venda[]>([])
+    // const [vendaEditada, setVendaEditada] = useState<Venda | null>(null)
+    // const [editando, setEditando] = useState(false);
+
+    async function excluirVenda(id: string){
+      const confirmar = window.confirm("Tem certeza que deseja excluir esta venda?");
+      if (!confirmar) return;
+
+      try {
+        const resposta = await fetch(`http://localhost:3001/vendas/${id}`,{
+          method: "DELETE",
+        });
+
+        if (resposta.ok) {
+          setVendas((prev)=> prev.filter((venda)=> String(venda.id) !== String(id)));
+        } else {
+          alert("Erro ao excluir a venda")
+        }
+      } catch (erro) {
+        console.log("Erro ao excluir a venda", erro)
+      }
+    }
+
+    // async function editarVenda(){
+
+    // }
 
     useEffect(()=>{
       async function carregarVendas(){
@@ -38,6 +63,7 @@ export default function HistoricoVendas(){
                 <Flex my={"4"}>
                 <ScrollArea  >
                 <Table.Root variant="surface" style={{width:"77vw",height: "35vw"}}>
+
                     <Table.Header>
                         <Table.Row>
                             <Table.RowHeaderCell>ID</Table.RowHeaderCell>
@@ -63,8 +89,19 @@ export default function HistoricoVendas(){
                               <Table.Cell>{venda.metodoPagamento}</Table.Cell>
                               <Table.Cell>{venda.data}</Table.Cell>
                               <Table.Cell>
-                                <Button mx={"3"} color="cyan">Editar</Button>
-                                <Button color="tomato">Excluir</Button>
+                                <Button 
+                                  mx={"3"} 
+                                  color="cyan" 
+                                  onClick={()=> {
+                                    console.log(venda)
+                                    // setVendaEditada(venda)
+                                    // setEditando(true)
+                                    alert("Esta função ainda não está disponivel")
+                                    }}
+                                  >
+                                      Editar
+                                </Button>
+                                <Button color="tomato" onClick={()=> excluirVenda(String(venda.id))}>Excluir</Button>
                               </Table.Cell>
                           </Table.Row>
                         ))

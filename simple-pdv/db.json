@@ -76,27 +76,15 @@
   ],
   "vendas": [
     {
-      "id": "02be",
+      "id": "fafa",
       "produtos": [
-        "Feijoada Pequena"
+        "Thermo Flame - 60 Tablets - Black Skull, Black Skull"
       ],
-      "total": 35,
+      "total": 45,
       "desconto": 0,
       "endereco": null,
       "metodoPagamento": "dinheiro",
-      "data": "19/05/2025 às 23:46"
-    },
-    {
-      "id": "2ccb",
-      "produtos": [
-        "Feijoada Média",
-        "Feijoada Média"
-      ],
-      "total": 120,
-      "desconto": 0,
-      "endereco": null,
-      "metodoPagamento": "dinheiro",
-      "data": "19/05/2025 às 23:49"
+      "data": "20/05/2025 às 16:26"
     }
   ],
   "configuracoes": [],
