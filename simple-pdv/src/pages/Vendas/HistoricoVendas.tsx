@@ -18,13 +18,20 @@ export default function HistoricoVendas(){
           method: "DELETE",
         });
 
-        if (resposta.ok) {
-          setVendas((prev)=> prev.filter((venda)=> Number(venda.id) !== Number(id)));
+        if (!resposta.ok) {
+          const erroTexto = await resposta.text();
+          console.error("Erro de resposta", resposta.status, erroTexto);
+          return;
+        } 
+        setVendas((prev)=> prev.filter((venda)=> Number(venda.id) !== Number(id)));
+        
+      } catch (erro: unknown) {
+        if (erro instanceof Error) {
+        console.error("Erro de requisição ao excluir a venda:", erro.message);
         } else {
-          alert("Erro ao excluir a venda")
+          alert("Erro ao tentar se comunicar com o servidor.");
         }
-      } catch (erro) {
-        console.log("Erro ao excluir a venda", erro)
+        alert("Erro ao tentar se comunicar com o servidor.");
       }
     }
 
