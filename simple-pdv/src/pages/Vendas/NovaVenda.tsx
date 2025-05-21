@@ -18,6 +18,8 @@ export default function NovaVenda(){
     const [descontoAplicado, setDescontoAplicado] = useState(false)
     // const [venda, setVenda] = useState<Venda[]>([])
     const [metodoPagamento, setMetodoPagamento] = useState<string>("dinheiro")
+    const dbVendas = "https://db-simple-pdv-david.vercel.app/vendas"
+    const dbProdutos = "https://db-simple-pdv-david.vercel.app/produtos"
 
     function limparCampos(){
       setCarrinho([])
@@ -42,7 +44,7 @@ export default function NovaVenda(){
       return
     }
     try{
-      const resposta = await fetch("http://localhost:3001/vendas"); // Faltou o await aqui!
+      const resposta = await fetch(dbVendas); // Faltou o await aqui!
       const vendasExistentes: Venda[] = await resposta.json();
       const novoId = gerarId(vendasExistentes); // Estava usando 'venda', mas o correto é 'vendasExistentes'
 
@@ -60,7 +62,7 @@ export default function NovaVenda(){
         })
       };
 
-      const respostaPost = await fetch("http://localhost:3001/vendas", {
+      const respostaPost = await fetch(dbVendas, {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
@@ -106,7 +108,7 @@ export default function NovaVenda(){
     }, [carrinho]);
 
     useEffect(()=>{
-      fetch("http://localhost:3001/produtos")
+      fetch(dbProdutos)
       .then(resp=> resp.json())
       .then(data => setProdutos(data))
       .catch(err => console.error("Erro ao buscar produto:", err));

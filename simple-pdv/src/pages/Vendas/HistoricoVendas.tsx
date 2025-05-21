@@ -7,13 +7,14 @@ export default function HistoricoVendas(){
     const [vendas, setVendas] = useState<Venda[]>([])
     const [idFiltro, setIdFiltro] = useState("")
     const [dataFiltro, setDataFiltro] = useState("")
+    const dbVenda = "https://db-simple-pdv-david.vercel.app/vendas"
 
     async function excluirVenda(id: number){
       const confirmar = window.confirm("Tem certeza que deseja excluir esta venda?");
       if (!confirmar) return;
 
       try {
-        const resposta = await fetch(`http://localhost:3001/vendas/${id}`,{
+        const resposta = await fetch(`${dbVenda}/${id}`,{
           method: "DELETE",
         });
 
@@ -29,7 +30,7 @@ export default function HistoricoVendas(){
 
     async function atualizarEntrega(id: number, entregue:boolean){
       try{
-        const resposta = await fetch(`http://localhost:3001/vendas/${id}`,{
+        const resposta = await fetch(`${dbVenda}/${id}`,{
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +52,7 @@ export default function HistoricoVendas(){
     }
 
     async function filtrarVendas(){
-      const resposta = await fetch("http://localhost:3001/vendas");
+      const resposta = await fetch(`${dbVenda}`);
       const dados = await resposta.json()
       
       if(!idFiltro && !dataFiltro){
@@ -79,7 +80,7 @@ export default function HistoricoVendas(){
   useEffect(()=>{
     async function carregarVendas(){
       try{
-        const resposta = await fetch("http://localhost:3001/vendas")
+        const resposta = await fetch(`${dbVenda}`)
         const dados = await resposta.json();
         setVendas(dados);
       } catch (erro){

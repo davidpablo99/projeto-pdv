@@ -4,9 +4,10 @@ import type { Produto } from "../../interfaces/Produto";
 
 export default function ListaProdutos(){
     const [produtos,setProdutos] = useState<Produto[]>([])
+    const dbProdutos = "https://db-simple-pdv-david.vercel.app/produtos"
     
         useEffect(()=>{
-          fetch("http://localhost:3001/produtos")
+          fetch(dbProdutos)
           .then((resp)=> resp.json())
           .then((data)=> setProdutos(data))
           .catch((err)=> console.log("Erro ao buscar produtos",err))

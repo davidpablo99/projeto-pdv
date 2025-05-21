@@ -11,6 +11,7 @@ export default function CadastroProdutos(){
     const [status, setStatus] = useState("em-estoque")
     const [imagem, setImagem] = useState<File | null>(null)
     const inputImagemRef = useRef<HTMLInputElement | null> (null);
+    const dbProdutos = "https://db-simple-pdv-david.vercel.app/produtos"
 
     function cadastrarProduto(){
       if (!imagem) return alert("Escolha uma imagem!");
@@ -25,7 +26,7 @@ export default function CadastroProdutos(){
           status,
           imagem: imagemBase64,
         };
-        fetch("http://localhost:3001/produtos", {
+        fetch(dbProdutos, {
           method: "POST",
           headers: {"Content-Types": "application/json"},
           body: JSON.stringify(produto)
