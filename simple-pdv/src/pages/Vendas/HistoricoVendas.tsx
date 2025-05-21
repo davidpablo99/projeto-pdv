@@ -8,7 +8,7 @@ export default function HistoricoVendas(){
     // const [vendaEditada, setVendaEditada] = useState<Venda | null>(null)
     // const [editando, setEditando] = useState(false);
 
-    async function excluirVenda(id: string){
+    async function excluirVenda(id: number){
       const confirmar = window.confirm("Tem certeza que deseja excluir esta venda?");
       if (!confirmar) return;
 
@@ -18,7 +18,7 @@ export default function HistoricoVendas(){
         });
 
         if (resposta.ok) {
-          setVendas((prev)=> prev.filter((venda)=> String(venda.id) !== String(id)));
+          setVendas((prev)=> prev.filter((venda)=> Number(venda.id) !== Number(id)));
         } else {
           alert("Erro ao excluir a venda")
         }
@@ -101,7 +101,7 @@ export default function HistoricoVendas(){
                                   >
                                       Editar
                                 </Button>
-                                <Button color="tomato" onClick={()=> excluirVenda(String(venda.id))}>Excluir</Button>
+                                <Button color="tomato" onClick={()=> excluirVenda(Number(venda.id))}>Excluir</Button>
                               </Table.Cell>
                           </Table.Row>
                         ))

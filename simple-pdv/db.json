@@ -76,15 +76,27 @@
   ],
   "vendas": [
     {
-      "id": "fafa",
+      "id": "1",
       "produtos": [
-        "Thermo Flame - 60 Tablets - Black Skull, Black Skull"
+        "Feijoada Pequena"
       ],
-      "total": 45,
+      "total": 35,
       "desconto": 0,
       "endereco": null,
       "metodoPagamento": "dinheiro",
-      "data": "20/05/2025 às 16:26"
+      "data": "20/05/2025 às 20:44"
+    },
+    {
+      "id": "2",
+      "produtos": [
+        "BCAA 2400 (30 Tabs) - Nova Fórmula",
+        "Feijoada Grande"
+      ],
+      "total": 115,
+      "desconto": 0,
+      "endereco": null,
+      "metodoPagamento": "dinheiro",
+      "data": "20/05/2025 às 20:44"
     }
   ],
   "configuracoes": [],

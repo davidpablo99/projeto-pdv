@@ -17,7 +17,7 @@ export default function NovaVenda(){
     const [endereco, setEndereco] = useState("");
     const [desconto, setDesconto] = useState(0);
     const [descontoAplicado, setDescontoAplicado] = useState(false)
-    const [venda, setVenda] = useState<Omit<Venda, "id">[]>([])
+    // const [venda, setVenda] = useState<Venda[]>([])
     const [metodoPagamento, setMetodoPagamento] = useState<string>("dinheiro")
 
     function limparCampos(){
@@ -31,15 +31,24 @@ export default function NovaVenda(){
       setDescontoAplicado(false)
     }
 
-    function fecharVenda(){
-      if ( carrinho.length === 0){
-        alert("Carrinho vazio. Adicione produtos antes de fechar a venda.");
-        return
-      }
-      //Aqui FICARA A LOGICA PARA O BACKEND
+    function gerarId(vendas: Venda[]): number {
+      if(vendas.length === 0) return 1
+      const ids = vendas.map((v) => Number(v.id));
+      return Math.max(...ids) + 1;
+    }
 
-      const novaVenda = {
-        // id: uuidv4(),
+    async function fecharVenda(){
+    if ( carrinho.length === 0){
+      alert("Carrinho vazio. Adicione produtos antes de fechar a venda.");
+      return
+    }
+    try{
+      const resposta = await fetch("http://localhost:3001/vendas"); // Faltou o await aqui!
+      const vendasExistentes: Venda[] = await resposta.json();
+      const novoId = gerarId(vendasExistentes); // Estava usando 'venda', mas o correto é 'vendasExistentes'
+
+      const novaVenda: Venda = {
+        id: novoId,
         produtos: carrinho.map((item)=> item.nome),
         total: total,
         desconto: desconto,
@@ -49,28 +58,27 @@ export default function NovaVenda(){
           hour: '2-digit',
           minute: "2-digit"
         })
-      }
-      setVenda((prev) => [...prev, novaVenda]);
+      };
 
-      fetch("http://localhost:3001/vendas", {
+      const respostaPost = await fetch("http://localhost:3001/vendas", {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
         },
         body: JSON.stringify(novaVenda)
-      })
-      .then(resp => resp.json())
-      .then(data => {
-        console.log("Venda registrada:", data);
-        alert("Venda finalizada com sucesso!");
-        limparCampos()
-      })
-      .catch(err =>{
-        console.error("Erro ao registrar venda:", err);
-        alert("Erro ao finalizar a venda");
       });
-      console.log(`Os dados para o backend ${venda}`)
+
+      const data = await respostaPost.json();
+      console.log("Venda registrada:", data);
+      alert("Venda finalizada com sucesso!");
+
+      // setVenda([...vendasExistentes, novaVenda]);
+      limparCampos();
+    } catch (err) {
+      console.error("Erro ao registrar venda:", err);
+      alert("Erro ao finalizar a venda");
     }
+  }
 
     function adicionarAoCarrinho(produto:Produto){
       setCarrinho((prev) => [...prev, produto]);
