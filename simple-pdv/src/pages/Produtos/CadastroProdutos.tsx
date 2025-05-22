@@ -11,7 +11,7 @@ export default function CadastroProdutos(){
     const [status, setStatus] = useState("em-estoque")
     const [imagem, setImagem] = useState<File | null>(null)
     const inputImagemRef = useRef<HTMLInputElement | null> (null);
-    const dbProdutos = "https://db-simple-pdv-david.vercel.app/produtos"
+    const dbProdutos = "http://localhost:3001/produtos"
 
     function cadastrarProduto(){
       if (!imagem) return alert("Escolha uma imagem!");

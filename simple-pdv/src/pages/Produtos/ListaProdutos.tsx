@@ -4,7 +4,7 @@ import type { Produto } from "../../interfaces/Produto";
 
 export default function ListaProdutos(){
     const [produtos,setProdutos] = useState<Produto[]>([])
-    const dbProdutos = "https://db-simple-pdv-david.vercel.app/produtos"
+    const dbProdutos = "http://localhost:3001/produtos"
     
         useEffect(()=>{
           fetch(dbProdutos)

@@ -4,6 +4,9 @@ import { CardProduto } from "../Produtos/CardProduto";
 import type { Produto } from "../../interfaces/Produto";
 import { useEffect, useState } from "react";
 import type { Venda } from "../../interfaces/Venda";
+import { buscarProdutos } from "../../services/produtoServices";
+import { buscarVendas, registrarVenda } from "../../services/vendasServices";
+import Notificacao from "../../components/Notificacao/Notificacao";
 
 
 
@@ -18,8 +21,12 @@ export default function NovaVenda(){
     const [descontoAplicado, setDescontoAplicado] = useState(false)
     // const [venda, setVenda] = useState<Venda[]>([])
     const [metodoPagamento, setMetodoPagamento] = useState<string>("dinheiro")
-    const dbVendas = "https://db-simple-pdv-david.vercel.app/vendas"
-    const dbProdutos = "https://db-simple-pdv-david.vercel.app/produtos"
+    const [notificacao, setNotificacao] = useState<string | null>(null)
+
+    async function mostrarNotificacao(mensagem: string){
+      setNotificacao(mensagem);
+      setTimeout(()=> setNotificacao(null), 3000)
+    }
 
     function limparCampos(){
       setCarrinho([])
@@ -40,13 +47,12 @@ export default function NovaVenda(){
 
     async function fecharVenda(){
     if ( carrinho.length === 0){
-      alert("Carrinho vazio. Adicione produtos antes de fechar a venda.");
+      mostrarNotificacao("Carrinho vazio. Adicione produtos antes de fechar a venda.");
       return
     }
     try{
-      const resposta = await fetch(dbVendas); // Faltou o await aqui!
-      const vendasExistentes: Venda[] = await resposta.json();
-      const novoId = gerarId(vendasExistentes); // Estava usando 'venda', mas o correto é 'vendasExistentes'
+      const vendasExistentes = await buscarVendas();
+      const novoId = gerarId(vendasExistentes);
 
       const novaVenda: Venda = {
         id: novoId,
@@ -62,23 +68,13 @@ export default function NovaVenda(){
         })
       };
 
-      const respostaPost = await fetch(dbVendas, {
-        method: "POST",
-        headers: {
-          "Content-Type" : "application/json"
-        },
-        body: JSON.stringify(novaVenda)
-      });
-
-      const data = await respostaPost.json();
+      const data = await registrarVenda(novaVenda);
       console.log("Venda registrada:", data);
-      alert("Venda finalizada com sucesso!");
-
-      // setVenda([...vendasExistentes, novaVenda]);
+      mostrarNotificacao("Venda finalizada com sucesso!");
       limparCampos();
     } catch (err) {
       console.error("Erro ao registrar venda:", err);
-      alert("Erro ao finalizar a venda");
+      mostrarNotificacao("Erro ao finalizar a venda");
     }
   }
 
@@ -108,13 +104,24 @@ export default function NovaVenda(){
     }, [carrinho]);
 
     useEffect(()=>{
-      fetch(dbProdutos)
-      .then(resp=> resp.json())
-      .then(data => setProdutos(data))
-      .catch(err => console.error("Erro ao buscar produto:", err));
+      async function carregarProdutos(){
+        try {
+          const data = await buscarProdutos();
+          setProdutos(data)
+        } catch (erro) {
+          console.error("Erro ao buscar produtos: ", erro)
+        }
+      }
+      carregarProdutos()
     }, [])
 
     return (
+      <>
+      {
+        notificacao && (
+          <Notificacao mensagem={notificacao}/>
+        )
+      }
         <Flex direction={"row"} align={"center"} justify={"center"}>
               {/* SECTION DE CARRINHO E VENDA */}
               <Box className="layout-container-direito" mx={"1vw"} style={{backgroundColor: "#ffffff"}}>
@@ -200,7 +207,7 @@ export default function NovaVenda(){
                 </Flex>
                 <Flex justify={"center"} gap={"4"} my={"5"}>
                   <Button onClick={fecharVenda}>Fechar venda</Button>
-                  <Button onClick={limparCampos}>Limpar Campos</Button>
+                  <Button color="tomato" onClick={limparCampos}>Limpar Campos</Button>
                 </Flex>
               </Box>
 
@@ -224,5 +231,6 @@ export default function NovaVenda(){
                 </ScrollArea>
               </Box>
             </Flex>
+      </>
     )
 }

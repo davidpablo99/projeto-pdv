@@ -2,65 +2,50 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Box, Button, Checkbox, Flex, ScrollArea, Table, Text, TextField } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import type { Venda } from "../../interfaces/Venda";
+import { buscarVendas, excluirVenda as excluirVendaAPI, atualizarEntrega as atualizarEntregaAPI } from "../../services/vendasServices";
+import Notificacao from "../../components/Notificacao/Notificacao";
 
 export default function HistoricoVendas(){
     const [vendas, setVendas] = useState<Venda[]>([])
     const [idFiltro, setIdFiltro] = useState("")
     const [dataFiltro, setDataFiltro] = useState("")
-    const dbVenda = "https://db-simple-pdv-david.vercel.app/vendas"
+    const [notificacao, setNotificacao] = useState<string | null>(null)
+
+    async function mostrarNotificacao(mensagem: string){
+      setNotificacao(mensagem);
+      setTimeout(()=> setNotificacao(null), 3000)
+    }
 
     async function excluirVenda(id: number){
       const confirmar = window.confirm("Tem certeza que deseja excluir esta venda?");
       if (!confirmar) return;
 
       try {
-        const resposta = await fetch(`${dbVenda}/${id}`,{
-          method: "DELETE",
-        });
-
-        if (!resposta.ok) {
-          const erroTexto = await resposta.text();
-          console.error("Erro de resposta", resposta.status, erroTexto);
-          return;
-        } 
-        setVendas((prev)=> prev.filter((venda)=> Number(venda.id) !== Number(id)));
-        
+        await excluirVendaAPI(id);
+        setVendas((prev) => prev.filter((venda) => venda.id !== id));
       } catch (erro: unknown) {
-        if (erro instanceof Error) {
-        console.error("Erro de requisição ao excluir a venda:", erro.message);
-        } else {
-          alert("Erro ao tentar se comunicar com o servidor.");
-        }
-        alert("Erro ao tentar se comunicar com o servidor.");
+        console.log("Erro ao excluir venda", erro);
+        mostrarNotificacao("Erro ao excluir a venda");
       }
+      mostrarNotificacao("Item excluido!")
     }
 
     async function atualizarEntrega(id: number, entregue:boolean){
-      try{
-        const resposta = await fetch(`${dbVenda}/${id}`,{
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({entregue}),
-        })
-        if(resposta.ok){
-          setVendas((prev)=>
-            prev.map((venda)=>
-              venda.id===id ? {...venda, entregue} : venda
-            )
-          );
-        } else {
-          alert("Erro ao atualizar entrega");
-        };
-      } catch (erro){
-        console.log("Erro ao atualizar entrega", erro)
+      try {
+        const vendaAtualizada = await atualizarEntregaAPI(id, entregue);
+        setVendas((vendasAntigas) =>
+          vendasAntigas.map((venda) =>
+            venda.id === id ? {...venda, entregue: vendaAtualizada.entregue} : venda)
+        )
+        mostrarNotificacao("Status de entrega atualizado!");
+        } catch (erro){
+        console.log("Erro ao atualizar entrega", erro);
+        mostrarNotificacao("Erro ao atualizar entrega.");
       }
     }
 
     async function filtrarVendas(){
-      const resposta = await fetch(`${dbVenda}`);
-      const dados = await resposta.json()
+      const dados = await buscarVendas()
       
       if(!idFiltro && !dataFiltro){
         setVendas(dados);
@@ -84,11 +69,11 @@ export default function HistoricoVendas(){
       console.log(vendasFiltradas)
     }}
 
+  // FUNÇÃO PARA CARREGAR VENDAS
   useEffect(()=>{
     async function carregarVendas(){
       try{
-        const resposta = await fetch(`${dbVenda}`)
-        const dados = await resposta.json();
+        const dados = await buscarVendas()
         setVendas(dados);
       } catch (erro){
         console.log("Erro ao carregar vendas", erro);
@@ -98,6 +83,12 @@ export default function HistoricoVendas(){
   }, []);
 
     return(
+      <>
+      {
+        notificacao && (
+          <Notificacao mensagem={notificacao}/>
+        )
+      }
         <Flex direction={"row"} >
 
           <Box className="layout-container-direito" >
@@ -158,7 +149,7 @@ export default function HistoricoVendas(){
                                     console.log(venda)
                                     // setVendaEditada(venda)
                                     // setEditando(true)
-                                    alert("Esta função ainda não está disponivel")
+                                    mostrarNotificacao("Esta função ainda não está disponivel")
                                     }}
                                   >
                                       Editar
@@ -177,5 +168,6 @@ export default function HistoricoVendas(){
             </Box>
           </Box>
         </Flex>
+      </>
     )
 }
