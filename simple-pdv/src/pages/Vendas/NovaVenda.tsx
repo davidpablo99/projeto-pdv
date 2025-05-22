@@ -16,10 +16,11 @@ export default function NovaVenda(){
     const [total, setTotal] = useState(0);
     const [mostrarDesconto, setMostrarDesconto] = useState(false);
     const [mostrarEndereco, setMostrarEndereco] = useState(false);
+    const [mostrarTaxaEntrega, setMostrarTaxaEntrega] = useState(false);
     const [endereco, setEndereco] = useState("");
     const [desconto, setDesconto] = useState(0);
     const [descontoAplicado, setDescontoAplicado] = useState(false)
-    // const [venda, setVenda] = useState<Venda[]>([])
+    const [taxaEntrega, setTaxaEntrega] = useState(0)
     const [metodoPagamento, setMetodoPagamento] = useState<string>("dinheiro")
     const [notificacao, setNotificacao] = useState<string | null>(null)
 
@@ -34,6 +35,8 @@ export default function NovaVenda(){
       setDesconto(0)
       setEndereco("")
       setMostrarDesconto(false)
+      setMostrarTaxaEntrega(false)
+      setTaxaEntrega(0)
       setMetodoPagamento("dinheiro")
       setMostrarEndereco(false)
       setDescontoAplicado(false)
@@ -58,6 +61,7 @@ export default function NovaVenda(){
         id: novoId,
         produtos: carrinho.map((item)=> item.nome),
         total: total,
+        taxaEntrega: taxaEntrega,
         entregue: false,
         desconto: desconto,
         endereco: mostrarEndereco ? endereco : null,
@@ -84,24 +88,20 @@ export default function NovaVenda(){
 
     function aplicarDescontoManual() {
       if (mostrarDesconto && desconto > 0 && !descontoAplicado) {
-        const totalCarrinho = carrinho.reduce((soma, prod) => soma + Number(prod.preco), 0);
-        let novoTotal = totalCarrinho - desconto;
-        if (novoTotal < 0) novoTotal = 0;
-        setTotal(novoTotal);
         setDescontoAplicado(true);
-        setDesconto(0);
       }
     }
 
-    useEffect(()=>{
-      if (!descontoAplicado){
-      const totalCarrinho = carrinho.reduce((somaTotal, produtoAtual) => {
-        return somaTotal + Number(produtoAtual.preco);
-      }, 0);
+    useEffect(() => {
+      const totalCarrinho = carrinho.reduce((soma, prod) => soma + Number(prod.preco), 0);
+      const valorTaxa = mostrarTaxaEntrega ? Number(taxaEntrega) || 0 : 0;
+      const valorDesconto = descontoAplicado ? desconto : 0;
 
-      setTotal(totalCarrinho);
-      }
-    }, [carrinho]);
+      let novoTotal = totalCarrinho + valorTaxa - valorDesconto;
+      if (novoTotal < 0) novoTotal = 0;
+
+      setTotal(novoTotal);
+    }, [carrinho, taxaEntrega, mostrarTaxaEntrega, desconto, descontoAplicado]);
 
     useEffect(()=>{
       async function carregarProdutos(){
@@ -159,7 +159,10 @@ export default function NovaVenda(){
                       <Text as="label">Aplicar desconto?</Text>
                       <Checkbox 
                         checked={mostrarDesconto} 
-                        onCheckedChange={(value) => setMostrarDesconto(!!value)}
+                        onCheckedChange={(value) => {
+                          setMostrarDesconto(!!value) 
+                          }
+                        }
                         />
                     </Flex>
                     {
@@ -183,7 +186,7 @@ export default function NovaVenda(){
                         checked={mostrarEndereco} 
                         onCheckedChange={(value) => {
                           setMostrarEndereco(!!value)
-                          
+                          setMostrarTaxaEntrega(!!value)
                         }}
 
                       />
@@ -196,6 +199,18 @@ export default function NovaVenda(){
                           my={"2"}
                           value={endereco}
                           onChange={(e) => setEndereco(e.target.value)}
+                        />
+                      )
+                    }
+                    {
+                      mostrarTaxaEntrega && (
+                        <TextField.Root
+                          placeholder="Digite o valor da taxa de entrega"
+                          style={{width: "25vw"}}
+                          my={"2"}
+                          type="number"
+                          value={taxaEntrega}
+                          onChange={(e)=> setTaxaEntrega(Number(e.target.value))}
                         />
                       )
                     }

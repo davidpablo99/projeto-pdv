@@ -76,7 +76,7 @@
   ],
   "vendas": [
     {
-      "id": 1,
+      "id": "1",
       "produtos": [
         "Feijoada Pequena"
       ],
@@ -88,7 +88,7 @@
       "data": "21/05/2025 às 22:08"
     },
     {
-      "id": 2,
+      "id": "2",
       "produtos": [
         "BCAA 2400 (30 Tabs) - Nova Fórmula"
       ],
@@ -100,7 +100,7 @@
       "data": "21/05/2025 às 22:15"
     },
     {
-      "id": 3,
+      "id": "3",
       "produtos": [
         "Black Skull Creatine Turbo - 300 g",
         "BCAA 2400 (30 Tabs) - Nova Fórmula"
@@ -111,6 +111,19 @@
       "endereco": null,
       "metodoPagamento": "dinheiro",
       "data": "21/05/2025 às 22:16"
+    },
+    {
+      "id": 4,
+      "produtos": [
+        "Feijoada Pequena"
+      ],
+      "total": 35,
+      "taxaEntrega": 10,
+      "entregue": false,
+      "desconto": 10,
+      "endereco": "",
+      "metodoPagamento": "dinheiro",
+      "data": "22/05/2025 às 15:23"
     }
   ],
   "configuracoes": [],

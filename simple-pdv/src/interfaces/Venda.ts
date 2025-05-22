@@ -2,6 +2,7 @@ export type Venda = {
     id: number ,
     produtos: string[],
     total: number,
+    taxaEntrega: number,
     desconto: number,
     entregue: boolean,
     endereco: string | null,
