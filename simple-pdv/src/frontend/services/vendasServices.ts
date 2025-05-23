@@ -1,6 +1,6 @@
 import type { Venda } from "../interfaces/Venda";
 
-const BASE_URL = "http://localhost:3001/vendas"
+const BASE_URL = "https://projeto-pdv-sage.vercel.app/vendas"
 
 export async function buscarVendas(): Promise<Venda[]> {
   const resposta = await fetch(BASE_URL);
