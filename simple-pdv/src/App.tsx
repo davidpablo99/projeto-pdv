@@ -1,5 +1,5 @@
 import "@radix-ui/themes/styles.css";
-import Sidebar from "./components/Sidebar/Sidebar";
+import Sidebar from "./frontend/components/Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import { Flex } from "@radix-ui/themes";
 
