@@ -175,6 +175,30 @@ app.delete("/produtos/:id", async (req, res) => {
   }
 });
 
+app.get("/dashboard/totais", async (req, res) => {
+  try {
+    await client.connect()
+    const db = client.db(dbName);
+
+    const totalVendas = await db.collection(collectionName).countDocuments();
+
+    const produtosCadastrados = await db.collection(collectionProdutos).countDocuments();
+
+    const vendas = await db.collection(collectionName).find().toArray();
+    const valorTotalVendido = vendas.reduce((soma, venda) => {
+      return soma + (venda.total || 0);
+    }, 0)
+    res.json({
+      totalVendas,
+      produtosCadastrados,
+      valorTotalVendido
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: "Erro ao buscar dados do dashboard" });
+  }
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });

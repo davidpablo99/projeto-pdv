@@ -217,7 +217,7 @@ export default function NovaVenda(){
               </Box>
 
               {/* DAQUI PRA BAIXO É A SECTION DE PRODUTOS */}
-              <Box className="layout-container-direito" style={{backgroundColor: "#ffffff", margin: "1em", padding:"1em"}} width={"35vw"} height={"45vw"}>
+              <Box className="shadowBox" style={{backgroundColor: "#ffffff", margin: "1em", padding:"1em", height: "85vh"}} width={"35vw"} height={"45vw"}>
                   <TextField.Root placeholder="Pesquisar produto...">
                     <TextField.Slot>
                       <MagnifyingGlassIcon/>

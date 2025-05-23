@@ -90,7 +90,7 @@ export default function ListaProdutos(){
                                 <Table.Cell>
                                     <Flex>
                                         <Button size="1" color="cyan" mx="3" onClick={() => handleAtualizar(produto)}>Atualizar</Button>
-                                        <Button size="1" color="tomato" onClick={() => handleExcluir(produto._id)}>Excluir</Button>
+                                        <Button size="1" color="tomato" onClick={() => handleExcluir(produto._id!)}>Excluir</Button>
                                     </Flex>
                                 </Table.Cell>
                             </Table.Row>
@@ -98,7 +98,7 @@ export default function ListaProdutos(){
                     </Table.Body>
                 </ScrollArea>
             </Table.Root>
-        </Flex>/
+        </Flex>
         </>
     )
 }

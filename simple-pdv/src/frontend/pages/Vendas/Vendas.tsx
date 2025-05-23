@@ -12,7 +12,7 @@ export default function Vendas() {
         <Tabs.Trigger value="historico-vendas">Histórico de vendas</Tabs.Trigger>
       </Tabs.List>
       
-      <Flex direction={"row"} style={{backgroundColor: "#e1dfdf"}}>
+      <Flex direction={"row"} style={{backgroundColor: "#ffffff"}}>
 
         <Flex direction={"row"}>
           <Tabs.Content value="nova-venda" style={{width:"85vw"}}>
