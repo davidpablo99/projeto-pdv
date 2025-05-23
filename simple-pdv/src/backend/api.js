@@ -199,4 +199,6 @@ app.get("/dashboard/totais", async (req, res) => {
   }
 });
 
-module.exports.handler = serverless(app);
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
