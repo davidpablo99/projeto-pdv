@@ -25,7 +25,7 @@ export default function Dashboard() {
     <Flex className="layout-container-direito" align={"center"} justify={"center"}>
       <CardDashboard titulo="Total de vendas" valor={`${totais.totalVendas}`}/>
       <CardDashboard titulo="Produtos cadastrados" valor={`${totais.produtosCadastrados}`}/>
-      <CardDashboard titulo="Valor total vendido" valor={`${totais.valorTotalVendido}`}/>
+      <CardDashboard titulo="Valor total vendido" valor={`R$ ${totais.valorTotalVendido.toFixed(2)}`}/>
     </Flex>
   );
 }

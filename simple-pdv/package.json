@@ -1,5 +1,23 @@
 {
+  "name": "simple-pdv-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
-    "multer": "^2.0.0"
+    "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/themes": "^3.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.21.2"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.5.0",
+    "vite": "^6.3.5"
   }
 }
