@@ -1,5 +1,5 @@
 export interface Produto {
-    _id?: string | undefined;
+    _id?: string;
     imagemUrl?: string,
     nome: string;
     preco: number;
