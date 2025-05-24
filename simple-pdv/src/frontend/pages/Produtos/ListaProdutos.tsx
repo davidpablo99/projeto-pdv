@@ -28,6 +28,7 @@ export default function ListaProdutos(){
     
         function handleExcluir(_id: string) {
             if (confirm("Tem certeza que deseja excluir este produto?")) {
+                console.log("Id recebido para excluir: ", _id)
                 excluirProduto(_id)
                 .then(() => {
                     setProdutos((prev) => prev.filter((p) => p._id !== _id));
