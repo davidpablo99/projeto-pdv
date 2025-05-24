@@ -8,7 +8,7 @@ export async function buscarProdutos(): Promise<Produto[]> {
   const dados = await resposta.json();
 
   return dados.map((produto: Produto) => ({
-    id: produto._id ?? "",
+    _id: produto._id ?? "",
     imagemPath: produto.imagemPath,
     nome: produto.nome,
     preco: produto.preco,
@@ -33,8 +33,8 @@ export async function registrarProduto(novoProduto: Produto) {
   return await resposta.json();
 }
 
-export async function excluirProduto(id: string) {
-  const resposta = await fetch(`${BASE_URL}/${id}`, {
+export async function excluirProduto(_id: string) {
+  const resposta = await fetch(`${BASE_URL}/${_id}`, {
     method: "DELETE",
   });
 
