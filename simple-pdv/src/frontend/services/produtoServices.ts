@@ -8,7 +8,7 @@ export async function buscarProdutos(): Promise<Produto[]> {
   const dados = await resposta.json();
 
   return dados
-  .filter((produto: Produto) => produto._id)
+  // .filter((produto: Produto) => produto._id)
   .map((produto: Produto) => ({
     _id: produto._id,
     imagemUrl: produto.imagemUrl,
