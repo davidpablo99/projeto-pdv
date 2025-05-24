@@ -1,5 +1,5 @@
 import type { Produto } from "../interfaces/Produto";
-const BASE_URL = "http://localhost:3001/produtos";
+const BASE_URL = "https://backend-simple-pdv.vercel.app/produtos";
 
 export async function buscarProdutos(): Promise<Produto[]> {
   const resposta = await fetch(BASE_URL);
