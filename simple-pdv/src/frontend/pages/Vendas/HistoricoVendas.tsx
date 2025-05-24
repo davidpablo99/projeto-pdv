@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import type { Venda } from "../../interfaces/Venda";
 import { buscarVendas, excluirVenda as excluirVendaAPI, atualizarEntrega as atualizarEntregaAPI } from "../../services/vendasServices";
 import Notificacao from "../../components/Notificacao/Notificacao";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { TbTruckDelivery } from "react-icons/tb";
 
 export default function HistoricoVendas(){
     const [vendas, setVendas] = useState<Venda[]>([])
@@ -165,13 +167,13 @@ export default function HistoricoVendas(){
                                     mostrarNotificacao("Esta função ainda não está disponivel")
                                     }}
                                   >
-                                      Editar
+                                      <MdEdit />
                                 </Button>
                                 <Button m={"1"} color="green" onClick={() => verEndereco(venda.endereco!)}>
-                                  Ver endereço
+                                  <TbTruckDelivery />
                                 </Button>
                                 <Button m={"1"} color="tomato" onClick={() => excluirVenda(venda._id!)}>
-                                  Excluir
+                                  <MdDelete />
                                 </Button>
                               </Table.Cell>
                           </Table.Row>

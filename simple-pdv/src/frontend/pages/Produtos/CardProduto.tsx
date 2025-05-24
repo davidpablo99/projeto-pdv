@@ -17,7 +17,7 @@ export function CardProduto({produto, onAdicionar}: CardProdutoPros){
             <Box maxWidth={"17rem"} m={"3"}>
                 <Card size={"1"} style={{backgroundColor: "#64d08f"}} onClick={handleSubmit}>
                     <Flex gap={"3"} align={"center"}>
-                        <img src={produto.imagemUrl} alt="Produto" width="50" height="50" style={{borderRadius: "0.5em"}}/>
+                        <img src={produto.imagemUrl} alt="Produto" width="50" height="50" style={{borderRadius: "0.5em", objectFit: "cover"}}/>
                         <Box>
                             <Text as="div" size={"2"} weight={"bold"}>{produto.nome}</Text>
                             {/* <Text as="p" size={"1"} color="gray">{produto.descricao}</Text> */}
