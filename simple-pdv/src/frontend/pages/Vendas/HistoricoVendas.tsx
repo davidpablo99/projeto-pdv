@@ -16,6 +16,14 @@ export default function HistoricoVendas(){
       setTimeout(()=> setNotificacao(null), 3000)
     }
 
+    async function verEndereco(endereco: string){
+      if (endereco === null) {
+        alert("Sem endereço cadastrado!")
+      } else {
+        alert(`Endereço: ${endereco}`)
+      }
+    }
+    
     async function excluirVenda(id: string){
       const confirmar = window.confirm("Tem certeza que deseja excluir esta venda?");
       if (!confirmar) return;
@@ -150,7 +158,7 @@ export default function HistoricoVendas(){
                               <Table.Cell>{venda.data}</Table.Cell>
                               <Table.Cell>
                                 <Button 
-                                  mx={"3"} 
+                                  m={"1"} 
                                   color="cyan" 
                                   onClick={()=> {
                                     console.log(venda)
@@ -159,7 +167,10 @@ export default function HistoricoVendas(){
                                   >
                                       Editar
                                 </Button>
-                                <Button color="tomato" onClick={() => excluirVenda(venda._id!)}>
+                                <Button m={"1"} color="green" onClick={() => verEndereco(venda.endereco!)}>
+                                  Ver endereço
+                                </Button>
+                                <Button m={"1"} color="tomato" onClick={() => excluirVenda(venda._id!)}>
                                   Excluir
                                 </Button>
                               </Table.Cell>

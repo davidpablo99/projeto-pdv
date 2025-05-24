@@ -14,6 +14,10 @@ export async function buscarVendas(): Promise<Venda[]> {
   }));
 }
 
+export async function verEnderecoAPI(id: string){
+  return alert("Chegou na api")
+}
+
 export async function excluirVenda(id: string){
     const resposta = await fetch(`${BASE_URL}/${id}`,
         {

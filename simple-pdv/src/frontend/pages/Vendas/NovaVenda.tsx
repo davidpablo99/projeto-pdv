@@ -226,7 +226,7 @@ export default function NovaVenda(){
                   <br />
                   <Text style={{fontWeight:"bold"}}>Produtos:</Text>
                   <>
-                <ScrollArea my={"3"} style={{height: "35vw"}}>
+                <ScrollArea my={"3"} style={{height: "65vh"}}>
                   {produtos.map(produto => (
                     <CardProduto 
                       key={produto._id}
