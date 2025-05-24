@@ -17,7 +17,7 @@ export function CardProduto({produto, onAdicionar}: CardProdutoPros){
             <Box maxWidth={"17rem"} m={"3"}>
                 <Card size={"1"} style={{backgroundColor: "#64d08f"}} onClick={handleSubmit}>
                     <Flex gap={"3"}>
-                        <Avatar size={"5"} src={`${BASE_URL}/${produto.imagemPath}`} radius="small" fallback="?"/>
+                        <Avatar size={"5"} src={`${BASE_URL}/${produto.imagemUrl}`} radius="small" fallback="?"/>
                         <Box>
                             <Text as="div" size={"2"} weight={"bold"}>{produto.nome}</Text>
                             {/* <Text as="p" size={"1"} color="gray">{produto.descricao}</Text> */}

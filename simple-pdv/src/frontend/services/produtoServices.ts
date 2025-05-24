@@ -9,7 +9,7 @@ export async function buscarProdutos(): Promise<Produto[]> {
 
   return dados.map((produto: Produto) => ({
     _id: produto._id ?? "",
-    imagemPath: produto.imagemPath,
+    imagemUrl: produto.imagemUrl,
     nome: produto.nome,
     preco: produto.preco,
     descricao: produto.descricao,

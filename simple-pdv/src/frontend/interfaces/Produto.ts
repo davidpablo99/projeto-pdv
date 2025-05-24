@@ -1,6 +1,6 @@
 export interface Produto {
     _id?: string | undefined;
-    imagemPath?: string,
+    imagemUrl?: string,
     nome: string;
     preco: number;
     descricao?: string;

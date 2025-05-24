@@ -26,11 +26,11 @@ export default function ListaProdutos(){
             .catch((err) => console.log("Erro ao buscar produtos", err));
         }, []);
     
-        function handleExcluir(id: string) {
+        function handleExcluir(_id: string) {
             if (confirm("Tem certeza que deseja excluir este produto?")) {
-                excluirProduto(id)
+                excluirProduto(_id)
                 .then(() => {
-                    setProdutos((prev) => prev.filter((p) => p._id !== id));
+                    setProdutos((prev) => prev.filter((p) => p._id !== _id));
                     mostrarNotificacao("Produto excluído com sucesso!");
                 })
                 .catch((err) => {
@@ -68,9 +68,9 @@ export default function ListaProdutos(){
                         {produtos.map((produto) =>(
                             <Table.Row key={produto._id}>
                                 <Table.Cell>
-                                    {produto.imagemPath ? (
+                                    {produto.imagemUrl ? (
                                     <img
-                                        src={`http://localhost:3001/${produto.imagemPath}`}
+                                        src={`${produto.imagemUrl}`}
                                         alt="Produto"
                                         width="50"
                                     />
